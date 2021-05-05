@@ -1,0 +1,41 @@
+{% set name = "testpackage" %}
+{% set version = "2.27" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: fd0076de3a2c8c695826e466cbb0f9febc6ea8474302ec3e673dbe46cd278b6a
+
+build:
+  number: 0
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+
+requirements:
+  host:
+    - pip
+    - python >= 3.6
+  run:
+    - python >= 3.6
+
+
+test:
+  imports:
+    - testpackage
+
+about:
+  home: "https://github.com/AswiniPusuluri/HelloWorld"
+  license: private
+  license_family: OTHER
+  license_file: LICENSE
+  summary: "Test package."
+  doc_url: https://github.com/AswiniPusuluri/HelloWorld
+  dev_url: https://github.com/AswiniPusuluri/HelloWorld
+
+extra:
+  recipe-maintainers:
+    - AswiniPusuluri
